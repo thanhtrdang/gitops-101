@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pa-backend
+  namespace: pa-dev
+  labels:
+    app: pa-backend
+    env: dev
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pa-backend
+      env: dev
+  template:
+    metadata:
+      labels:
+        app: pa-backend
+        env: dev
+    spec:
+      containers:
+        - name: pa-backend
+          image: 'pepper-attack/pa-backend'
+          ports:
+            - containerPort: 3000
+          imagePullPolicy: IfNotPresent
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pa-backend
+  namespace: pa-dev
+  labels:
+    app: pa-backend
+    env: dev
+spec:
+  selector:
+    app: pa-backend
+    env: dev
+  type: LoadBalancer
+  ports:
+    - port: 8000
+      targetPort: 3000
