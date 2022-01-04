@@ -1,3 +1,4 @@
+import { V1PodList } from '@kubernetes/client-node';
 import { Controller, Get } from '@nestjs/common';
 
 import { AppService } from './app.service';
@@ -16,5 +17,10 @@ export class AppController {
     this.appService.getProfile();
 
     return 'OK';
+  }
+
+  @Get('/pods')
+  async listAllPods(): Promise<V1PodList> {
+    return this.appService.listAllPods();
   }
 }
