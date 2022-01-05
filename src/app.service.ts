@@ -10,20 +10,12 @@ export class AppService {
     return `Hi at ${new Date()}`;
   }
 
-  getProfile(): void {
-    this.httpService
-      .get('http://pa-db-rest/pa_user_profile')
-      .subscribe((response) => {
-        console.log(`XXX => ${JSON.stringify(response.data)}`);
-      });
-  }
-
   async listAllPods(): Promise<V1PodList> {
     const kc = new KubeConfig();
     kc.loadFromDefault();
 
     const k8sApi = kc.makeApiClient(CoreV1Api);
 
-    return k8sApi.listNamespacedPod('pa-dev').then((res) => res.body);
+    return k8sApi.listNamespacedPod('k8s-101').then((res) => res.body);
   }
 }

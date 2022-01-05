@@ -12,13 +12,6 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get('/profile')
-  getProfile(): string {
-    this.appService.getProfile();
-
-    return 'OK';
-  }
-
   @Get('/pods')
   async listAllPods(): Promise<V1PodList> {
     return this.appService.listAllPods();
