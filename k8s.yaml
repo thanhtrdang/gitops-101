@@ -7,7 +7,8 @@ metadata:
     app: gitops-101
     env: dev
 spec:
-  replicas: 2
+  replicas: 1
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
       app: gitops-101
@@ -23,7 +24,6 @@ spec:
           image: thanhtrdang/gitops-101:b20220106.0
           ports:
             - containerPort: 3000
-          imagePullPolicy: IfNotPresent
 
 ---
 apiVersion: v1
