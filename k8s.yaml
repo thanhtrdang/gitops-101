@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: gitops-101
-          image: 'thanhtrdang/gitops-101'
+          image: thanhtrdang/gitops-101:b20220106.0
           ports:
             - containerPort: 3000
           imagePullPolicy: IfNotPresent
